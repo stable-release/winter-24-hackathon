@@ -1,0 +1,28 @@
+{
+    "name": "winter-24-hackathon",
+    "version": "1.0.0",
+    "description": "Project for Chegg Winter 2024 Hackathon",
+    "main": "src/server.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/stable-release/winter-24-hackathon",
+        "directory": "/.backend"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node src/server.js",
+        "start:dev": "nodemon src/server.js"
+    },
+    "author": "team 1",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.3",
+        "express": "^4.18.2",
+        "knex": "^3.1.0",
+        "pg": "^8.11.3"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.3"
+    }
+}
