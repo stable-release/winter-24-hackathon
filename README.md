@@ -3,3 +3,5 @@
 2. Create a separate branch
 3. Push changes on separate branch
 4. Merge on issue closed
+
+Changed
