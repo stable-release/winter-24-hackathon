@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 import Navbar from "./_components/Navbar";
+import AuthenticationProvider from "./_contexts/authentication/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +16,11 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                    <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-                        <Navbar />
+                <AuthenticationProvider>
+                    <main className="flex min-h-screen w-full flex-col items-center justify-between text-sm lg:flex">
                         {children}
-                    </div>
-                </main>
+                    </main>
+                </AuthenticationProvider>
             </body>
         </html>
     );
