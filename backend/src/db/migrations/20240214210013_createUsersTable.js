@@ -9,7 +9,7 @@ exports.up = function(knex) {
     table.string("last_name");
     table.string("email");
     table.timestamps(true, true);
-  })
+  });
 };
 
 /**
@@ -17,5 +17,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTable("users")
+  return knex.schema.dropTable("users");
 };
