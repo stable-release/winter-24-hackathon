@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 import Navbar from "./_components/Navbar";
-import AuthenticationProvider from "./_contexts/AuthProvider";
+import AuthenticationProvider from "./_contexts/authentication/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

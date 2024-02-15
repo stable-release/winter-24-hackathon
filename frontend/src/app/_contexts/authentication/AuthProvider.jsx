@@ -1,19 +1,14 @@
 "use client";
+import { getCookie } from "cookies-next";
 /**
  * Basic authentication using cookie session data
  * Works by decrypting cookie and using permission level
  * Use the AuthenticationProviderContext to render conditionals
  */
-import { createContext, useState } from "react";
+import { AuthenticationProviderContext } from "./AuthenticationContext";
 
 /**
- * AuthenticationProviderContext
- * React global context holding global user values
- */
-export const AuthenticationProviderContext = createContext(null);
-
-/**
- * Use as a wrapper for children components in a Layout.jsx
+ * Use as a wrapper for children components in a Layout.jsxz
  * ie.
  * <AuthenticationProvider>
  *      {children}
@@ -21,10 +16,10 @@ export const AuthenticationProviderContext = createContext(null);
  * @param {childrenObj} childrenObj
  */
 export default function AuthenticationProvider({ children }) {
-    const [user, setUser] = useState({});
+    const permissions = getCookie("permissions");
 
     return (
-        <AuthenticationProviderContext.Provider value={{ user }}>
+        <AuthenticationProviderContext.Provider value={{permissions}}>
             {children}
         </AuthenticationProviderContext.Provider>
     );
