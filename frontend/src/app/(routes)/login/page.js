@@ -2,7 +2,7 @@
 
 import { authenticateUser } from "@/app/_api/api";
 import LoginForm from "@/app/_components/Forms/LoginForm";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -37,17 +37,24 @@ export default function Login() {
      */
     useEffect(() => {
         async function submitForm() {
-            console.log("here");
-            const { username = "", permissions = 0 } = await authenticateUser(
-                formData
-            );
-            console.log(username);
-            console.log(permissions);
-            if (username && permissions) {
-                setCookie("username", username);
-                setCookie("permissions", permissions);
-                router.push("/dashboard");
-            } else {
+            try {
+                const res = await authenticateUser(
+                    formData.username,
+                    formData.password
+                );
+
+                if (
+                    res.permissions != undefined &&
+                    res.permissions > 0
+                ) {
+                    setCookie("username", res.username);
+                    setCookie("permissions", res.permissions);
+                    router.push("/dashboard");
+                } else {
+                    setError("Validation Error");
+                }
+            } catch (e) {
+                setCookie("permissions", 0);
                 setError("Incorrect credentials");
                 setSubmit(false);
             }
