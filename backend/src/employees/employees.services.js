@@ -7,6 +7,14 @@ function create(user) {
         .then((createdRecords) => createdRecords[0]);
 };
 
+function addInitialUserCredentials(user) {
+    return knex("credentials")
+        .insert(user)
+        .returning("*")
+        .then((createdRecords) => createdRecords[0]);
+};
+
 module.exports = {
     create,
+    addInitialUserCredentials,
 };

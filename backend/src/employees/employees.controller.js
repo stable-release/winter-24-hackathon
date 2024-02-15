@@ -24,6 +24,10 @@ function hasOnlyValidProperties(req, res, next) {
 
 async function create(req, res) {
     const data = await employeesService.create(req.body.data);
+    const user = {
+        user_id: data.user_id
+    };
+    await employeesService.addInitialUserCredentials(user);
     res.status(201).json({ data });
 };
 
