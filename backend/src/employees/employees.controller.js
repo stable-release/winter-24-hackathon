@@ -22,6 +22,31 @@ function hasOnlyValidProperties(req, res, next) {
     next();
 };
 
+async function validPermission(req, res, next) {
+    const { data: { permission } } = req.body;
+    if (permission != 2) {
+        return next({
+            status: 404,
+            message: `Incorrect permission level: ${permission}`
+        });
+    };
+    next();
+};
+
+async function userExists(req, res, next) {
+    const { user_id } = req.body.data;
+    const user = await employeesService.read(user_id);
+    if (user) {
+        res.locals.user = user;
+        next();
+    } else {
+        return next({
+            status: 404,
+            message: `Cannot find user: ${user_id}`
+        });
+    };
+};
+
 async function create(req, res) {
     const data = await employeesService.create(req.body.data);
     const user = {
@@ -31,10 +56,28 @@ async function create(req, res) {
     res.status(201).json({ data });
 };
 
+async function list(req, res) {
+    res.json({ data: await employeesService.list() });
+};
+
+async function destroy(req, res) {
+    const { user } = res.locals;
+    await employeesService.delete(user.user_id)
+    res.sendStatus(204);
+};
+
 module.exports = {
     create: [
         hasOnlyValidProperties,
         hasRequiredProperties,
         asyncErrorBoundary(create)
+    ],
+    list: [
+        validPermission,
+        asyncErrorBoundary(list)
+    ],
+    delete: [
+        asyncErrorBoundary(userExists),
+        asyncErrorBoundary(destroy)
     ],
 };
