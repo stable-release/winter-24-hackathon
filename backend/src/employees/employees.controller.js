@@ -22,6 +22,17 @@ function hasOnlyValidProperties(req, res, next) {
     next();
 };
 
+async function validPermission(req, res, next) {
+    const { data: { permission } } = req.body;
+    if (permission != 2) {
+        return next({
+            status: 404,
+            message: `Incorrect permission level: ${permission}`
+        });
+    };
+    next();
+};
+
 async function create(req, res) {
     const data = await employeesService.create(req.body.data);
     const user = {
@@ -31,10 +42,18 @@ async function create(req, res) {
     res.status(201).json({ data });
 };
 
+async function list(req, res) {
+    res.json({ data: await employeesService.list() });
+};
+
 module.exports = {
     create: [
         hasOnlyValidProperties,
         hasRequiredProperties,
         asyncErrorBoundary(create)
+    ],
+    list: [
+        validPermission,
+        asyncErrorBoundary(list)
     ],
 };

@@ -1,5 +1,9 @@
 const knex = require("../db/connection");
 
+function list() {
+    return knex("users").select("*")
+}
+
 function create(user) {
     return knex("users")
         .insert(user)
@@ -17,4 +21,5 @@ function addInitialUserCredentials(user) {
 module.exports = {
     create,
     addInitialUserCredentials,
+    list,
 };
