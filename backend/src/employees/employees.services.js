@@ -22,6 +22,13 @@ function addInitialUserCredentials(user) {
         .then((createdRecords) => createdRecords[0]);
 };
 
+function update(updatedUser) {
+    return knex("users")
+        .select("*")
+        .where({ user_id: updatedUser.user_id })
+        .update(updatedUser, "*");
+};
+
 function destroy(user_id) {
     return knex("users").where({ user_id }).del();
 };
@@ -30,6 +37,7 @@ module.exports = {
     create,
     read,
     addInitialUserCredentials,
+    update,
     list,
     delete: destroy,
 };

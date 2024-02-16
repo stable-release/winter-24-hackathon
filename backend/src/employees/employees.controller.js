@@ -7,9 +7,6 @@ const VALID_PROPERTIES = [
     "first_name",
     "last_name",
     "email",
-];
-
-const UPDATE_VALID_PROPERTIES = [
     "birthdate",
     "height",
     "weight",
@@ -21,7 +18,6 @@ const UPDATE_VALID_PROPERTIES = [
 ];
 
 function hasOnlyValidProperties(req, res, next) {
-    console.log(req)
     const { data = {} } = req.body;
     const invalidFields = Object.keys(data)
         .filter((field) => !VALID_PROPERTIES.includes(field));
@@ -34,7 +30,7 @@ function hasOnlyValidProperties(req, res, next) {
     next();
 };
 
-async function validPermission(req, res, next) {
+async function hasValidPermission(req, res, next) {
     const { data: { permission } } = req.body;
     if (permission != 2) {
         return next({
@@ -46,7 +42,7 @@ async function validPermission(req, res, next) {
 };
 
 async function userExists(req, res, next) {
-    const { user_id } = req.body.data;
+    const { user_id } = req.params;
     const user = await employeesService.read(user_id);
     if (user) {
         res.locals.user = user;
@@ -72,6 +68,30 @@ async function list(req, res) {
     res.json({ data: await employeesService.list() });
 };
 
+async function update(req, res) {
+    const { data: { 
+            birthdate, 
+            height, 
+            weight, 
+            sex, 
+            occupation, 
+            income, 
+            location, 
+            sleeping_disorder } } = req.body;
+    const updatedUser = {
+        ...res.locals.user,
+        birthdate: birthdate,
+        height: height,
+        weight: weight,
+        sex: sex,
+        occupation: occupation,
+        income: income,
+        location: location,
+        sleeping_disorder: sleeping_disorder
+    };
+    res.json( { data: await employeesService.update(updatedUser) })
+}
+
 async function destroy(req, res) {
     const { user } = res.locals;
     await employeesService.delete(user.user_id)
@@ -85,8 +105,13 @@ module.exports = {
         asyncErrorBoundary(create)
     ],
     list: [
-        validPermission,
+        hasValidPermission,
         asyncErrorBoundary(list)
+    ],
+    update: [
+        hasOnlyValidProperties,
+        asyncErrorBoundary(userExists),
+        asyncErrorBoundary(update)
     ],
     delete: [
         asyncErrorBoundary(userExists),

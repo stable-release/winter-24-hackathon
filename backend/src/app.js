@@ -1,6 +1,7 @@
 const path = require("path");
 const authRouter = require("./auth/auth.router");
 const employeesRouter = require("./employees/employees.router");
+const entriesRouter = require("./entries/entries.router");
 
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 
@@ -12,8 +13,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/auth", authRouter)
+app.use("/auth", authRouter);
 app.use("/employees", employeesRouter);
+app.use("/entries", entriesRouter);
 
 app.use(notFound);
 app.use(errorHandler);
