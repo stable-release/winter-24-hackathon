@@ -33,6 +33,20 @@ async function validPermission(req, res, next) {
     next();
 };
 
+async function userExists(req, res, next) {
+    const { user_id } = req.body.data;
+    const user = await employeesService.read(user_id);
+    if (user) {
+        res.locals.user = user;
+        next();
+    } else {
+        return next({
+            status: 404,
+            message: `Cannot find user: ${user_id}`
+        });
+    };
+};
+
 async function create(req, res) {
     const data = await employeesService.create(req.body.data);
     const user = {
@@ -46,6 +60,12 @@ async function list(req, res) {
     res.json({ data: await employeesService.list() });
 };
 
+async function destroy(req, res) {
+    const { user } = res.locals;
+    await employeesService.delete(user.user_id)
+    res.status(204);
+};
+
 module.exports = {
     create: [
         hasOnlyValidProperties,
@@ -55,5 +75,9 @@ module.exports = {
     list: [
         validPermission,
         asyncErrorBoundary(list)
+    ],
+    delete: [
+        asyncErrorBoundary(userExists),
+        asyncErrorBoundary(destroy)
     ],
 };

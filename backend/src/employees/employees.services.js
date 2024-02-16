@@ -4,6 +4,10 @@ function list() {
     return knex("users").select("*")
 }
 
+function read(user_id) {
+    return knex("users").select("*").where({ user_id }).first();
+};
+
 function create(user) {
     return knex("users")
         .insert(user)
@@ -18,8 +22,14 @@ function addInitialUserCredentials(user) {
         .then((createdRecords) => createdRecords[0]);
 };
 
+function destroy(user_id) {
+    return knex("users").where({ user_id }).del();
+};
+
 module.exports = {
     create,
+    read,
     addInitialUserCredentials,
     list,
+    delete: destroy,
 };
