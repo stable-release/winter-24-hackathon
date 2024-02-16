@@ -9,7 +9,19 @@ const VALID_PROPERTIES = [
     "email",
 ];
 
+const UPDATE_VALID_PROPERTIES = [
+    "birthdate",
+    "height",
+    "weight",
+    "sex",
+    "occupation",
+    "income",
+    "location",
+    "sleeping_disorder",
+];
+
 function hasOnlyValidProperties(req, res, next) {
+    console.log(req)
     const { data = {} } = req.body;
     const invalidFields = Object.keys(data)
         .filter((field) => !VALID_PROPERTIES.includes(field));
