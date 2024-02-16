@@ -63,7 +63,7 @@ async function list(req, res) {
 async function destroy(req, res) {
     const { user } = res.locals;
     await employeesService.delete(user.user_id)
-    res.status(204);
+    res.sendStatus(204);
 };
 
 module.exports = {
