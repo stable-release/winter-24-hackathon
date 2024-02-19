@@ -31,24 +31,8 @@ async function fetchJson(url, options, onCancel) {
     };
 };
 
-export async function listEmployees(signal) {
-    const url = new URL(`${API_URL}/employees`);
-    return await fetchJson(url, { signal }, []);
+export async function listEmployees(username, signal) {
+    const url = new URL(`${API_URL}/recommender/${username}`);
+    const options = { method: "GET", signal};
+    return await fetchJson(url, options, []);
 }
-
-export async function deleteEmployee(user_id, signal) {
-    const url = new URL(`${API_URL}/employees/${user_id}`);
-    const options = { method: "DELETE", signal};
-    return await fetchJson(url, options);
-}
-
-export async function createUser(user, signal) {
-    const url = new URL(`${API_URL}/employees/new`)
-    const options = {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ data: user }),
-        signal,
-    };
-    return await fetchJson(url, options, {});
-};
