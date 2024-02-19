@@ -1,18 +1,22 @@
 "use client";
 
-import { authenticateUser } from "@/app/_api/auth.api";
-import LoginForm from "@/app/_components/Forms/LoginForm";
-import { getCookie, setCookie } from "cookies-next";
+import { signUpUser } from "@/app/_api/auth.api";
+import SignUpForm from "@/app/_components/Forms/SignUpForm";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Login() {
+export default function SignUp() {
     const router = useRouter();
 
     const [submit, setSubmit] = useState(false);
     const [formData, setFormData] = useState({
-        username: "",
+        FirstName: "",
+        LastName: "",
+        email: "",
         password: "",
+        confirmPassword: "",
+        permissions: 1
     });
 
     const [error, setError] = useState("");
@@ -38,18 +42,19 @@ export default function Login() {
     useEffect(() => {
         async function submitForm() {
             try {
-                const res = await authenticateUser(
-                    formData.username,
-                    formData.password
+                const res = await signUpUser(
+                    formData.FirstName,
+                    formData.LastName,
+                    formData.email,
+                    formData.password,
+                    formData.permissions,
                 );
 
-                if (
-                    res.permissions != undefined &&
-                    res.permissions > 0
-                ) {
+                console.log("here")
+                if (res.permissions != undefined && res.permissions > 0) {
                     setCookie("username", res.username);
                     setCookie("permissions", res.permissions);
-                    router.push("/dashboard");
+                    router.push("/signup/bio");
                 } else {
                     setError("Validation Error");
                 }
@@ -66,8 +71,8 @@ export default function Login() {
 
     return (
         <div>
-            Login Page
-            <LoginForm
+            Create an Account
+            <SignUpForm
                 onSubmit={onSubmit}
                 handleChange={handleChange}
                 formData={formData}

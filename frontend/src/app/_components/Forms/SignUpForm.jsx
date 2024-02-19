@@ -1,4 +1,4 @@
-export default function SignInForm({
+export default function SignUpForm({
     formData,
     onSubmit,
     handleChange,
@@ -47,16 +47,16 @@ export default function SignInForm({
                 value={formData.password}
             />
             <input
-                id="password"
-                name="password"
+                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
-                autoComplete="password"
+                autoComplete="none"
                 required={true}
                 onChange={handleChange}
                 value={formData.confirmPassword}
             />
             {error && <div>{error}</div>}
-            <button type="submit">Create an Account</button>
+            <button type="submit">Continue</button>
         </form>
     );
 }

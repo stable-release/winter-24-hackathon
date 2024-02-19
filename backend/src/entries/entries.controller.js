@@ -8,7 +8,9 @@ const hasRequiredProperties = hasProperties(
     "activity_level", 
     "daily_steps", 
     "stress_level", 
-    "sleep_duration");
+    "sleep_duration",
+    "sleep_quality",
+    "blood_pressure");
 
 const VALID_PROPERTIES = [
     "user_id",
@@ -17,6 +19,8 @@ const VALID_PROPERTIES = [
     "daily_steps",
     "stress_level",
     "sleep_duration",
+    "sleep_quality",
+    "blood_pressure",
     "notes",
 ];
 

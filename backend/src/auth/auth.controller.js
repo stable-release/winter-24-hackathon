@@ -15,6 +15,7 @@ function hasOnlyValidProperties(req, res, next) {
     const VALID_PROPERTIES = [
         "username",
         "password",
+        "permission",
         "FirstName",
         "LastName",
         "Email",
@@ -65,8 +66,13 @@ async function verifyPassword(req, res, next) {
     });
 }
 
+async function hi(r, s, n) {
+    console.log("here")
+    n();
+}
+
 async function activateAccount(req, res, next) {
-    const { data: { FirstName, LastName, Email, password } = {} } = req.body;
+    const { data: { FirstName, LastName, Email, password, permission } = {} } = req.body;
     const response = await retrieveUser(Email);
     if (
         response[0] &&
@@ -79,7 +85,7 @@ async function activateAccount(req, res, next) {
         const hash = await encryptPassword(password);
 
         // Default activation permission to 1
-        await updateCredentials(res.locals.UserID, res.locals.email, hash, 1);
+        await updateCredentials(res.locals.UserID, res.locals.email, hash, permission ? permission : 1);
         const newCredentials = await retrievePassword(Email);
 
         return res.status(200).json({
