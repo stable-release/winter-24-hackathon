@@ -12,6 +12,7 @@ export default function NavElements() {
     useEffect(() => {
         if (signout) {
             setCookie("permissions", 0)
+            setCookie("username", "");
             router.push("/login")
         }
     }, [signout])

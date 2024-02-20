@@ -67,12 +67,13 @@ async function verifyPassword(req, res, next) {
 }
 
 async function hi(r, s, n) {
-    console.log("here")
+    console.log("here");
     n();
 }
 
 async function activateAccount(req, res, next) {
-    const { data: { FirstName, LastName, Email, password, permission } = {} } = req.body;
+    const { data: { FirstName, LastName, Email, password, permission } = {} } =
+        req.body;
     const response = await retrieveUser(Email);
     if (
         response[0] &&
@@ -85,7 +86,12 @@ async function activateAccount(req, res, next) {
         const hash = await encryptPassword(password);
 
         // Default activation permission to 1
-        await updateCredentials(res.locals.UserID, res.locals.email, hash, permission ? permission : 1);
+        await updateCredentials(
+            res.locals.UserID,
+            res.locals.email,
+            hash,
+            permission ? permission : 1
+        );
         const newCredentials = await retrievePassword(Email);
 
         return res.status(200).json({
@@ -110,8 +116,8 @@ async function hasUserID(req, res, next) {
     }
     next({
         status: 400,
-        message: `A 'username' parameter is required.`
-    })
+        message: `A 'username' parameter is required.`,
+    });
 }
 
 async function getUserID(req, res, next) {
@@ -119,9 +125,17 @@ async function getUserID(req, res, next) {
     res.locals.user_id = response[0].user_id;
     return res.status(200).json({
         data: {
-            user_id: res.locals.user_id
-        }
-    })
+            user_id: res.locals.user_id,
+        },
+    });
+}
+
+async function getUserDetails(req, res, next) {
+    const response = await retrieveUser(res.locals.username);
+    const user = response[0];
+    return res.status(200).json({
+        data: { user },
+    });
 }
 
 module.exports = {
@@ -136,8 +150,6 @@ module.exports = {
         hasProperties("FirstName", "LastName", "Email", "password"),
         asyncErrorBoundary(activateAccount),
     ],
-    userID: [
-        hasUserID,
-        asyncErrorBoundary(getUserID)
-    ]
+    userID: [hasUserID, asyncErrorBoundary(getUserID)],
+    userDetails: [hasUserID, asyncErrorBoundary(getUserDetails)],
 };
