@@ -16,10 +16,13 @@ export default function Page() {
       setPerm(permission);
     }, [])
 
+    console.log(getCookie("permissions"))
+
     return (
       <>
         <div>{perm > 0 && <h1>Hello, Dashboard</h1>}</div>
-        <div>{perm == 2 ? <Link href="/employees">View Employees</Link> : null}</div>
+        <div>{perm > 1 ? <Link href="/employees">View Employees</Link> : null}</div>
+        <div className="w-[600px]">Hello dashboard</div>
         <Calendar onChange={onChange} value={value} />
       </>
     );
