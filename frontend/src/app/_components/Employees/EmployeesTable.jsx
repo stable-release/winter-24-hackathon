@@ -3,18 +3,13 @@ import Link from "next/link";
 
 export default function EmployeesTable({ employees }) {
     return (
-        <div className="flex flex-col">
-            <div className="row">
-                <Link href="/employees/new">Add New Employee</Link>
-                <Link href="/dashboard">Home</Link>
-            </div>
-        <table>
+        <table className="flex flex-col">
             <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
+                <tr className="flex gap-[30px] pt-[10px]">
+                    <th className="rounded-md bg-secondary text-[white] w-32">First Name</th>
+                    <th className="rounded-md bg-secondary text-[white] w-32">Last Name</th>
+                    <th className="rounded-md bg-secondary text-[white] w-32">Email</th>
+                    <th className="rounded-md bg-secondary text-[white] w-32 ml-[200px]">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +19,5 @@ export default function EmployeesTable({ employees }) {
                     employee={employee} />)}
             </tbody>
         </table>
-        </div>
     )
 }
