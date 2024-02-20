@@ -45,6 +45,12 @@ body {
     outline-color: #ffffff;
 }
 
+.FormLabel {
+  color: #000000;
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .FormSubmit {
     color: #ffffff;
     background-color: #7e8bb1;
@@ -59,9 +65,51 @@ body {
     font-weight: 700;
 }
 
+.LoginSubmit {
+  color: #ffffff;
+  background-color: #7e8bb1;
+  border: 0px #7e8bb1;
+  border-radius: 20px;
+  line-height: 29px;
+  font-size: 25px;
+  font-weight: 700;
+  width: 212px;
+  height: 54px;
+}
+
 .FooterItem {
     color: #000000;
     font-size: 16px;
     font-weight: 700;
     line-height: 28px;
+}
+
+.SidebarItem {
+  color: #000000;
+  background-color: #FFFFFF;
+  width: 213px;
+  height: 52px;
+  border: 0px #7E8BB1;
+  border-radius: 20px;
+}
+
+.SidebarLabel {
+  line-height: 29px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.SidebarIcon {
+  width: 29px;
+  height: 29px;
+}
+
+.Selected {
+  color: #FFFFFF;
+  background-color: #7E8BB1;
+}
+
+.Unselected {
+  color: #000000;
+  bacground-color: none;
 }

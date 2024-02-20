@@ -43,10 +43,7 @@ export default function Login() {
                     formData.password
                 );
 
-                if (
-                    res.permissions != undefined &&
-                    res.permissions > 0
-                ) {
+                if (res.permissions != undefined && res.permissions > 0) {
                     setCookie("username", res.username);
                     setCookie("permissions", res.permissions);
                     router.push("/dashboard");
@@ -65,14 +62,19 @@ export default function Login() {
     }, [submit]);
 
     return (
-        <div>
-            Login Page
-            <LoginForm
-                onSubmit={onSubmit}
-                handleChange={handleChange}
-                formData={formData}
-                error={error}
-            />
+        <div className="flex w-full">
+            <img src="/svg/splash.svg" className="w-1/2" />
+            <div className="flex flex-col items-center w-1/2 px-5 pt-[100px]">
+                <div className="h-[782px] w-[600px] bg-[#F0F2F2] flex flex-col rounded-[50px] justify-center items-center">
+                    <div className="Title mb-[40px]">Welcome Back,</div>
+                    <LoginForm
+                        onSubmit={onSubmit}
+                        handleChange={handleChange}
+                        formData={formData}
+                        error={error}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

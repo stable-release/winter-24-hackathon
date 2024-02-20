@@ -82,14 +82,17 @@ export default function Bio() {
     }, [submit]);
 
     return (
-        <div>
-            Bio Form
-            <SignUpBioForm
-                onSubmit={onSubmit}
-                handleChange={handleChange}
-                formData={formData}
-                error={error}
-            />
+        <div className="flex w-full">
+            <img src="/svg/splash.svg" className="w-1/2" />
+            <div className="w-1/2 px-5 pt-[100px]">
+                <div className="Title mb-[40px]">Welcome to Thrive</div>
+                <SignUpBioForm
+                    onSubmit={onSubmit}
+                    handleChange={handleChange}
+                    formData={formData}
+                    error={error}
+                />
+            </div>
         </div>
     );
 }
