@@ -1,6 +1,8 @@
 "use client";
 
-import { signUpUser } from "@/app/_api/auth.api";
+import { returnUserID } from "@/app/_api/api";
+import { initialBio, signUpUser } from "@/app/_api/auth.api";
+import { formatAsDate } from "@/app/_api/date-time";
 import SignUpBioForm from "@/app/_components/Forms/SignUpBioForm";
 import SignUpForm from "@/app/_components/Forms/SignUpForm";
 import { getCookie, setCookie } from "cookies-next";
@@ -56,16 +58,21 @@ export default function Bio() {
     useEffect(() => {
         async function submitForm() {
             try {
-                const res = await signUpUser(
-                    formData.FirstName,
-                    formData.LastName,
-                    formData.email,
-                    formData.password,
-                    formData.permissions
+                const return_ID = await returnUserID(getCookie("username"));
+                console.log(return_ID.user_id)
+                const res = await initialBio(
+                    formatAsDate(formData.birthdate),
+                    formData.height,
+                    formData.weight,
+                    formData.sex,
+                    formData.occupation,
+                    formData.income,
+                    formData.location,
+                    formData.sleeping_disorder,
+                    return_ID.user_id
                 );
 
-                console.log("here");
-                if (res.permissions != undefined && res.permissions > 0) {
+                if (res[0].user_id == return_ID.user_id) {
                     router.push("/dashboard");
                 } else {
                     setError("Validation Error");

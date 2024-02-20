@@ -92,7 +92,8 @@ export async function initialBio(
     occupation,
     income,
     location,
-    sleeping_disorder
+    sleeping_disorder,
+    user_id
 ) {
     try {
         // fetch verification
@@ -115,7 +116,7 @@ export async function initialBio(
             },
         });
 
-        let response = await fetch(`${API_URL}/employees/`, {
+        let response = await fetch(`${API_URL}/employees/${user_id}`, {
             method: "PUT",
             body: bodyContent,
             headers: headersList,
