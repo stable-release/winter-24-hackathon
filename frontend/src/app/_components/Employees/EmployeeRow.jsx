@@ -22,11 +22,11 @@ export default function EmployeeRow({ employee }) {
 
     return <>
         <ErrorAlert error={error} />
-        <tr>
+        <tr className="">
             <td>{employee.first_name}</td>
-            <td>{employee.last_name}</td>
-            <td>{employee.email}</td>
-            <td><button name="delete" onClick={removeEmployee}>Delete</button></td>
+            <td className="pl-[110px]">{employee.last_name}</td>
+            <td className="pl-[90px]">{employee.email}</td>
+            <td className="pl-[220px]"><button name="delete" onClick={removeEmployee} className="bg-[red] text-[white] rounded-md font-bold p-1">Delete</button></td>
         </tr>
     </>
 }

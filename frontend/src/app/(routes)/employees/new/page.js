@@ -44,8 +44,8 @@ export default function NewEmployee() {
     }
     
     return (
-        <>
-            <h1>New Employee</h1>
+        <div className="box-border font-bold text-6xl">
+            <h1 className="pb-2">New Employee</h1>
             <NewEmployeeForm
                 formData={formData}
                 handleChange={handleChange}
@@ -53,6 +53,6 @@ export default function NewEmployee() {
                 handleCancel={handleCancel}
                 error={error}
             />
-        </>
+        </div>
     )
 };
