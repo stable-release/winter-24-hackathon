@@ -1,6 +1,7 @@
 "use client";
 
 import { signUpUser } from "@/app/_api/auth.api";
+import Footer from "@/app/_components/Footer/Footer";
 import SignUpForm from "@/app/_components/Forms/SignUpForm";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ export default function SignUp() {
         email: "",
         password: "",
         confirmPassword: "",
-        permissions: 1
+        permissions: 1,
     });
 
     const [error, setError] = useState("");
@@ -35,7 +36,7 @@ export default function SignUp() {
     };
 
     /**
-     * Authentication API call with username and password
+     * Authentication API call with sign up details
      * Upon successful response, set cookies to permission details
      * Otherwise, create new error
      */
@@ -47,10 +48,10 @@ export default function SignUp() {
                     formData.LastName,
                     formData.email,
                     formData.password,
-                    formData.permissions,
+                    formData.permissions
                 );
 
-                console.log("here")
+                console.log("here");
                 if (res.permissions != undefined && res.permissions > 0) {
                     setCookie("username", res.username);
                     setCookie("permissions", res.permissions);
@@ -70,14 +71,17 @@ export default function SignUp() {
     }, [submit]);
 
     return (
-        <div>
-            Create an Account
-            <SignUpForm
-                onSubmit={onSubmit}
-                handleChange={handleChange}
-                formData={formData}
-                error={error}
-            />
+        <div className="flex w-full">
+            <img src="/svg/splash.svg" className="w-1/2" />
+            <div className="w-1/2 px-5 pt-[100px]">
+                <div className="Title mb-[40px]">Welcome to Thrive</div>
+                <SignUpForm
+                    onSubmit={onSubmit}
+                    handleChange={handleChange}
+                    formData={formData}
+                    error={error}
+                />
+            </div>
         </div>
     );
 }

@@ -31,6 +31,13 @@ async function fetchJson(url, options, onCancel) {
     };
 };
 
+// Username is same as Email
+export async function returnUserID(username) {
+    const url = new URL(`${API_URL}/auth/ID/${username}`);
+    const options = { method: "GET"};
+    return await fetchJson(url, options);
+}
+
 export async function listEmployees(signal) {
     const url = new URL(`${API_URL}/employees`);
     return await fetchJson(url, { signal }, []);

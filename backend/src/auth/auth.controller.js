@@ -102,6 +102,28 @@ async function activateAccount(req, res, next) {
     });
 }
 
+async function hasUserID(req, res, next) {
+    const { username } = req.params; // API_BASE_URL/auth/ID/${username}
+    if (username) {
+        res.locals.username = username;
+        return next();
+    }
+    next({
+        status: 400,
+        message: `A 'username' parameter is required.`
+    })
+}
+
+async function getUserID(req, res, next) {
+    const response = await retrieveUser(res.locals.username);
+    res.locals.user_id = response[0].user_id;
+    return res.status(200).json({
+        data: {
+            user_id: res.locals.user_id
+        }
+    })
+}
+
 module.exports = {
     verification: [
         hasOnlyValidProperties,
@@ -114,4 +136,8 @@ module.exports = {
         hasProperties("FirstName", "LastName", "Email", "password"),
         asyncErrorBoundary(activateAccount),
     ],
+    userID: [
+        hasUserID,
+        asyncErrorBoundary(getUserID)
+    ]
 };
