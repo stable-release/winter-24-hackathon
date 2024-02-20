@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { REACT_APP_API_URL = "http://localhost:5001" } = process.env;
+const { REACT_APP_API_URL = "https://winter-24-hackathon-production.up.railway.app" } = process.env;
 
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
