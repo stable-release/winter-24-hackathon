@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { API_URL = "http://localhost:5001" } = process.env;
+const { REACT_APP_API_URL = "http://localhost:5001" } = process.env;
 
 /**
  *
@@ -23,7 +23,7 @@ export async function authenticateUser(username, password) {
             },
         });
 
-        let response = await fetch(`${API_URL}/auth/login`, {
+        let response = await fetch(`${REACT_APP_API_URL}/auth/login`, {
             method: "PUT",
             body: bodyContent,
             headers: headersList,
@@ -64,7 +64,7 @@ export async function signUpUser(first, last, email, password, permission) {
             },
         });
 
-        let response = await fetch(`${API_URL}/auth`, {
+        let response = await fetch(`${REACT_APP_API_URL}/auth`, {
             method: "PUT",
             body: bodyContent,
             headers: headersList,
@@ -116,7 +116,7 @@ export async function initialBio(
             },
         });
 
-        let response = await fetch(`${API_URL}/employees/${user_id}`, {
+        let response = await fetch(`${REACT_APP_API_URL}/employees/${user_id}`, {
             method: "PUT",
             body: bodyContent,
             headers: headersList,

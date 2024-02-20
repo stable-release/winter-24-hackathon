@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { API_URL = "http://localhost:5001" } = process.env;
+const { REACT_APP_API_URL = "http://localhost:5001" } = process.env;
 
 /**
  * Recommends a strategy for specified user
@@ -14,7 +14,7 @@ export async function recommendStrategy(username) {
             "Content-Type": "application/json",
         };
 
-        let response = await fetch(`${API_URL}/recommender/${username}`, {
+        let response = await fetch(`${REACT_APP_API_URL}/recommender/${username}`, {
             method: "GET",
             headers: headersList,
         });

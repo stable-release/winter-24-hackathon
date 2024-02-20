@@ -6,7 +6,7 @@ First, copy the `.env.sample` and link with the local backend
 ```bash
 cp .env.sample .env
 # sample env
-API_URL="http://localhost:5001"
+REACT_APP_API_URL="http://localhost:5001"
 ```
 
 Second, run the development server:
