@@ -3,6 +3,7 @@
 import { listEmployees } from "@/app/_api/api";
 import EmployeesTable from "@/app/_components/Employees/EmployeesTable";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function Employees() {
     const [employees, setEmployees] = useState([]);
@@ -24,7 +25,13 @@ function Employees() {
         loadEmployees();
     }, []);
     return (
-        <EmployeesTable employees={employees} />
+        <div>
+            <div className="flex gap-[20px]">
+                <Link href="/employees/new" className="rounded-3xl bg-secondary font-bold p-2 text-xl text-[white] leading-5"> + New Employee</Link>
+                <Link href="/dashboard" className="rounded-3xl bg-secondary font-bold p-2 text-xl text-[white] leading-5">Home</Link>
+            </div>
+            <EmployeesTable employees={employees} />
+        </div>
     )
 }
 
