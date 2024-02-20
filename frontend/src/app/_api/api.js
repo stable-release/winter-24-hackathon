@@ -38,6 +38,13 @@ export async function returnUserID(username) {
     return await fetchJson(url, options);
 }
 
+// Username is same as Email
+export async function returnUserDetails(username) {
+    const url = new URL(`${API_URL}/auth/details/${username}`);
+    const options = { method: "GET"};
+    return await fetchJson(url, options);
+}
+
 export async function listEmployees(signal) {
     const url = new URL(`${API_URL}/employees`);
     return await fetchJson(url, { signal }, []);

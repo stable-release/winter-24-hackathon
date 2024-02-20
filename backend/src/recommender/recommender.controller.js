@@ -41,7 +41,7 @@ async function getBio(req, res, next) {
 async function strategy(req, res, next) {
     res.status(200).json({
         data: {
-            strategy: Math.round(Math.random() * 5),
+            strategy: Math.round(Math.random() * 4),
         },
     });
 }

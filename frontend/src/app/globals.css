@@ -113,3 +113,15 @@ body {
   color: #000000;
   bacground-color: none;
 }
+
+.RecLabel {
+  line-height: 27px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.Recommendation {
+  line-height: 27px;
+  font-size: 20px;
+  font-weight: 400;
+}
