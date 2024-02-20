@@ -3,12 +3,23 @@
 import { signUpUser } from "@/app/_api/auth.api";
 import SignUpBioForm from "@/app/_components/Forms/SignUpBioForm";
 import SignUpForm from "@/app/_components/Forms/SignUpForm";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Bio() {
     const router = useRouter();
+
+    // Auth with cookies 🍪
+    const [perm, setPerm] = useState(0);
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const permission = getCookie("permissions");
+        const username = getCookie("username");
+        setPerm(permission);
+        setUsername(username);
+    }, []);
 
     const [submit, setSubmit] = useState(false);
     const [formData, setFormData] = useState({
@@ -19,7 +30,7 @@ export default function Bio() {
         occupation: "Doctor",
         income: 0,
         location: "Moon",
-        sleeping_disorder: ""
+        sleeping_disorder: "",
     });
 
     const [error, setError] = useState("");
@@ -38,8 +49,8 @@ export default function Bio() {
     };
 
     /**
-     * Authentication API call with username and password
-     * Upon successful response, set cookies to permission details
+     * Authentication API call with bio details
+     * Upon successful response, redirect to dashboard
      * Otherwise, create new error
      */
     useEffect(() => {
@@ -55,9 +66,7 @@ export default function Bio() {
 
                 console.log("here");
                 if (res.permissions != undefined && res.permissions > 0) {
-                    setCookie("username", res.username);
-                    setCookie("permissions", res.permissions);
-                    router.push("/signup/bio");
+                    router.push("/dashboard");
                 } else {
                     setError("Validation Error");
                 }
