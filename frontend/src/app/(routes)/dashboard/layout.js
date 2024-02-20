@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function SignupLayout({ children }) {
     return (
-        <section className="flex flex-col w-full min-h-[100vh]">
+        <div className="w-full h-full">
             <Navbar />
             <div className="flex min-h-full">
                 <div className="flex w-[245px] pl-[24px] pt-[150px] h-full">
@@ -16,7 +16,6 @@ export default function SignupLayout({ children }) {
                 </div>
                 {children}
             </div>
-            <Footer />
-        </section>
+        </div>
     );
 }

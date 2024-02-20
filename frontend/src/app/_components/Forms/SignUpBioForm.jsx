@@ -64,10 +64,10 @@ export default function SignUpBioForm({
                         <label htmlFor="sex" className="FormLabel">
                             Sex
                         </label>
-                        <select name="sex" id="sex" className="FormInput">
+                        <select name="sex" id="sex" className="FormInput" defaultValue={"none"}>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
-                            <option value="none" selected={true}>
+                            <option value="none">
                                 none
                             </option>
                         </select>
@@ -136,12 +136,11 @@ export default function SignUpBioForm({
                             name="sleeping_disorder"
                             id="sleeping_disorder"
                             className="FormInput"
+                            defaultValue="none"
                         >
+                            <option value="none"> none</option>
                             <option value="apnea">Apnea</option>
                             <option value="insomnia">Insomnia</option>
-                            <option value="none" selected={true}>
-                                none
-                            </option>
                         </select>
                     </div>
                 </div>
