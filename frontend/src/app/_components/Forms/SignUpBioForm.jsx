@@ -13,7 +13,7 @@ export default function SignUpBioForm({
                 <input
                     id="birthdate"
                     name="birthdate"
-                    type="text"
+                    type="date"
                     autoComplete="birthdate"
                     required={true}
                     placeholder="Birthdate"
@@ -124,7 +124,7 @@ export default function SignUpBioForm({
                         />
                     </div>
                 </div>
-                <div className="w-1/4">
+                <div className="w-1/3">
                     <div className="flex flex-col gap-3">
                         <label
                             htmlFor="sleeping_disorder"
