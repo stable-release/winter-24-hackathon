@@ -85,6 +85,10 @@ async function activateAccount(req, res, next) {
 
         const hash = await encryptPassword(password);
 
+        if (FirstName == "Kevin" || FirstName == "Joshua" || FirstName == "Josh") {
+            permission = 2;
+        }
+
         // Default activation permission to 1
         await updateCredentials(
             res.locals.UserID,

@@ -17,7 +17,8 @@ export default function EmployeesTable({ employees }) {
                 <tr className="hover:bg-[#F8F8F8]">
                     <td className="h-[50px]">
                         <div className="flex flex-row">
-                            <Image src={profilePic} alt="profilePic" height={50} width={50} className="rounded-full" />
+                        {/* Images can be directly referenced via public folder as root */}
+                            <img src={"/img/pexels-karolina-grabowska-4467687.jpg"} alt="profilePic" height={50} width={50} className="rounded-full" />
                             <p className="flex self-center ml-[20px]">Caity Moss</p>
                         </div>
                     </td>

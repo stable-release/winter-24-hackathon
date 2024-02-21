@@ -11,26 +11,37 @@ export default function NavElements() {
 
     useEffect(() => {
         if (signout) {
-            setCookie("permissions", 0)
+            setCookie("permissions", 0);
             setCookie("username", "");
-            router.push("/login")
+            router.push("/login");
         }
-    }, [signout])
-
+    }, [signout]);
 
     return (
         <div className="h-[146px] w-full flex items-center bg-[#F9F9F9]">
-            <img src="svg/Logo.svg" className="size-24 ml-[28px]" />
-            <button className="ml-auto" onClick={()=> setEnabled((prev) => !prev)}>
+            <Link href={"/"}>
+                <img src="svg/Logo.svg" className="size-24 ml-[28px]" />
+            </Link>
+            <button
+                className="ml-auto"
+                onClick={() => setEnabled((prev) => !prev)}
+            >
                 <img src="svg/infoIcon.svg" className="size-14" />
             </button>
             <img
                 src="svg/ProfilePlaceholder.svg"
                 className="size-14 ml-[66px] mr-[60px]"
             />
-            {enabled && <div className="absolute border-black border-2 top-[120px] right-[150px] bg-white w-[125px] h-[50px] rounded-2xl flex justify-center items-center">
-                <button className="font-bold" onClick={() => setSignout((prev) => true)}>Sign Out</button>
-            </div>}
+            {enabled && (
+                <div className="absolute border-black border-2 top-[120px] right-[150px] bg-white w-[125px] h-[50px] rounded-2xl flex justify-center items-center">
+                    <button
+                        className="font-bold"
+                        onClick={() => setSignout((prev) => true)}
+                    >
+                        Sign Out
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

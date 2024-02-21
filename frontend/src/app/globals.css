@@ -46,9 +46,9 @@ body {
 }
 
 .FormLabel {
-  color: #000000;
-  font-weight: 600;
-  font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .FormSubmit {
@@ -66,15 +66,15 @@ body {
 }
 
 .LoginSubmit {
-  color: #ffffff;
-  background-color: #7e8bb1;
-  border: 0px #7e8bb1;
-  border-radius: 20px;
-  line-height: 29px;
-  font-size: 25px;
-  font-weight: 700;
-  width: 212px;
-  height: 54px;
+    color: #ffffff;
+    background-color: #7e8bb1;
+    border: 0px #7e8bb1;
+    border-radius: 20px;
+    line-height: 29px;
+    font-size: 25px;
+    font-weight: 700;
+    width: 212px;
+    height: 54px;
 }
 
 .FooterItem {
@@ -85,117 +85,147 @@ body {
 }
 
 .SidebarItem {
-  color: #000000;
-  background-color: #FFFFFF;
-  width: 213px;
-  height: 52px;
-  border: 0px #7E8BB1;
-  border-radius: 20px;
+    color: #000000;
+    background-color: #ffffff;
+    width: 213px;
+    height: 52px;
+    border: 0px #7e8bb1;
+    border-radius: 20px;
 }
 
 .SidebarLabel {
-  line-height: 29px;
-  font-size: 20px;
-  font-weight: 400;
+    line-height: 29px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .SidebarIcon {
-  width: 29px;
-  height: 29px;
+    width: 29px;
+    height: 29px;
 }
 
 .Selected {
-  color: #FFFFFF;
-  background-color: #7E8BB1;
+    color: #ffffff;
+    background-color: #7e8bb1;
 }
 
 .Unselected {
-  color: #000000;
-  bacground-color: none;
+    color: #000000;
+    bacground-color: none;
 }
 
 .RecLabel {
-  line-height: 27px;
-  font-size: 16px;
-  font-weight: 500;
+    line-height: 27px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .Recommendation {
-  line-height: 27px;
-  font-size: 20px;
-  font-weight: 400;
+    line-height: 27px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .NavLink {
-  line-height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.NavAction {
+    color: #000000;
+    height: 44px;
+    border: 0px #e2e1de;
+    border-radius: 20px;
+    background-color: #e2e1de;
+    padding-left: 23px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    outline-color: #ffffff;
+}
+
+.Cover {
+    flex: 1;
+}
+
+.CoverTitle {
+    line-height: 110px;
+    font-size: 80px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.CoverSubtitle {
+    font-size: 25px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 30px;
+}
+
+.table-head1 {
+    min-width: 350px;
+    height: 25px;
+    text-align: left;
+}
+
+.table-head2 {
+    min-width: 100px;
+    height: 25px;
+    text-align: left;
+}
+
+hr {
+    color: #e2e1de;
+    margin-bottom: 5px;
+    width: 800px;
+}
+
+.add-user {
+    display: grid;
+    color: #ffffff;
+    background-color: #7e8bb1;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.DailyModal {
+    border: 0px #f9f9f9;
+    background-color: #f9f9f9;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.LandingActions {
+    color: #ffffff;
+    background-color: #E8E8E3;
+    border: 0px #E8E8E3;
+    border-radius: 31px;
+}
+
+.LandingLogin {
+  color: #000000;
+  line-height: 16px;
   font-size: 16px;
   font-weight: 700;
 }
 
-.NavAction {
-  color: #000000;
-  height: 44px;
-  border: 0px #e2e1de;
-  border-radius: 20px;
-  background-color: #e2e1de;
-  padding-left: 23px;
-  font-size: 18px;
-  font-weight: 400;
-  width: 100%;
-  outline-color: #ffffff;
-}
-
-.Cover {
-  flex: 1;
-}
-
-.CoverTitle {
-  line-height: 110px;
-  font-size: 80px;
-  font-weight: 500;
-  color: #FFFFFF;
-}
-
-.CoverSubtitle {
-  font-size: 25px;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 30px;
-}
-
-.table-head1 {
-  min-width: 350px;
-  height: 25px;
-  text-align: left;
-}
-
-.table-head2 {
-  min-width: 100px;
-  height: 25px;
-  text-align: left;
-}
-
-hr {
-  color: #e2e1de;
-  margin-bottom: 5px;
-  width: 800px;
-}
-
-.add-user {
-  display: grid;
-  color: #ffffff;
+.LandingSignup {
   background-color: #7E8BB1;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
+  border: 0px #7E8BB1;
+  border-radius: 31px;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.DailyModal {
-  border: 0px #F9F9F9;
-  background-color: #F9F9F9;
-  width: 80%;
-  border-radius: 20px;
+.LandingAccount {
+  color: #000000;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 700;
 }

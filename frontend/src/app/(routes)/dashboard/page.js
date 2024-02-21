@@ -10,7 +10,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { strategies } from "./strategies";
 import { asDateString, formatAsDate } from "@/app/_api/date-time";
-import EntryForm from "@/app/_components/Forms/EntryForm";
 import EntryComponent from "@/app/_components/Entry/EntryComponent";
 import { retrieveEntry } from "@/app/_api/entries.api";
 
@@ -58,15 +57,19 @@ export default function Page() {
             // await res entry for today's date
             // if date exists then switch entry available to false
             // otherwise, true
-            const userID = await returnUserID(getCookie("username"));
-            const response = await retrieveEntry(
-                userID.user_id,
-                asDateString(calendarValue)
-            );
+            try {
+                const userID = await returnUserID(getCookie("username"));
+                const response = await retrieveEntry(
+                    userID.user_id,
+                    asDateString(calendarValue)
+                );
 
-            if (response.entry_date) {
-                isEntryAvailable(0);
-            } else {
+                if (response.entry_date) {
+                    isEntryAvailable(0);
+                } else {
+                    isEntryAvailable(1);
+                }
+            } catch (e) {
                 isEntryAvailable(1);
             }
         }
@@ -138,7 +141,7 @@ export default function Page() {
                 <div className="h-1/2 my-10">
                     <Calendar onChange={onChange} value={calendarValue} />
                 </div>
-                <div>Hi</div>
+                <div>{}</div>
             </div>
         </div>
     );
@@ -156,9 +159,7 @@ export default function Page() {
                 />
             );
         } else if (entryAvailable == 2) {
-            return (<div className="Title">
-                Loading...
-            </div>)
+            return <div className="Title">Loading...</div>;
         } else {
             return dash;
         }
