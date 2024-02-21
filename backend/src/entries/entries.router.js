@@ -13,7 +13,7 @@ router.route("/new")
     .post(controller.create)
     .all(methodNotAllowed);
 
-router.route("/:date")
+router.route("/:date/:userID")
     .all(cors())
     .get(controller.read)
     .all(methodNotAllowed);
