@@ -44,8 +44,9 @@ export default function NewEmployee() {
     }
     
     return (
-        <div className="box-border font-bold text-6xl">
-            <h1 className="pb-2">New Employee</h1>
+        <div className="box-border text-6xl">
+            <h1 className="mb-[5px] font-medium">Add New User</h1>
+            <hr/>
             <NewEmployeeForm
                 formData={formData}
                 handleChange={handleChange}

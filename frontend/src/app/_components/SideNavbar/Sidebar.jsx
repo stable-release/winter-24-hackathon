@@ -4,7 +4,7 @@ export default function Sidebar({ selection }) {
     return (
         <div className="flex flex-col gap-10">
             <Link
-                href=""
+                href="/dashboard"
                 className={
                     selection == 0
                         ? "SidebarItem Selected flex items-center gap-6 justify-center"
