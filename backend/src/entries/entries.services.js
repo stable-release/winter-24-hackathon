@@ -7,10 +7,11 @@ function create(entry) {
         .then((createdRecords) => createdRecords[0]);
 };
 
-function read(entry_date) {
+function read(entry_date, user_id) {
     return knex("entries")
         .select("*")
         .where({ entry_date })
+        .where({ user_id })
         .first();
 };
 

@@ -39,7 +39,8 @@ function hasOnlyValidProperties(req, res, next) {
 
 async function entryExists(req, res, next) {
     const entry_date = req.params.date;
-    const entry = await entriesServices.read(entry_date);
+    const user_id = req.params.userID;
+    const entry = await entriesServices.read(entry_date, user_id);
     if (entry) {
         res.locals.entry = entry;
         next();
