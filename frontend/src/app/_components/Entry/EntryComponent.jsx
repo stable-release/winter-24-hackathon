@@ -64,11 +64,6 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
         }
     }, [calendarValue, userDetails]);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        setSubmit(true);
-    };
-
     const handleChange = ({ target }) => {
         const value = target.value;
         setFormData({
@@ -100,7 +95,7 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
                 );
                 if (res.entry_date) {
                     console.log("done")
-                    router.refresh();
+
                 } else {
                     setError("Validation Error");
                 }
@@ -128,7 +123,7 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
                         <EntryForm
                             today={calendarValue}
                             formData={formData}
-                            onSubmit={onSubmit}
+                            onSubmit={onDone}
                             handleChange={handleChange}
                             sliderValues={[
                                 activityLevel,

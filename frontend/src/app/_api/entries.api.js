@@ -85,6 +85,7 @@ export async function retrieveEntry(user_id, entry_date) {
         if (payload.error) {
             return Promise.reject({ message: payload.error });
         }
+        
         return payload.data;
     } catch (e) {
         console.error(e);

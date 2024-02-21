@@ -12,6 +12,7 @@ import { strategies } from "./strategies";
 import { asDateString, formatAsDate } from "@/app/_api/date-time";
 import EntryComponent from "@/app/_components/Entry/EntryComponent";
 import { retrieveEntry } from "@/app/_api/entries.api";
+import CalendarEntry from "@/app/_components/Entry/CalendarEntry";
 
 export default function Page() {
     // Auth with cookies 🍪
@@ -48,7 +49,8 @@ export default function Page() {
     const [entryAvailable, isEntryAvailable] = useState(2);
     const [submitEntry, isSubmitEntry] = useState(false);
 
-    const onDone = () => {
+    const onDone = (e) => {
+        e.preventDefault();
         isSubmitEntry(true);
     };
 
@@ -141,7 +143,9 @@ export default function Page() {
                 <div className="h-1/2 my-10">
                     <Calendar onChange={onChange} value={calendarValue} />
                 </div>
-                <div>{}</div>
+                <div>
+                    <CalendarEntry value={calendarValue} entryAvailable={entryAvailable}/>
+                </div>
             </div>
         </div>
     );
