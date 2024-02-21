@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="w-full bg-[#F0F2F2] h-[136px] mt-auto">
             <div className="mx-[148px] my-[20px] flex">
                 <div className="w-1/2 flex flex-col gap-3">
-                    <Link href="" className="FooterItem">
+                    <Link href="/" className="FooterItem">
                         Company
                     </Link>
                     <Link href="" className="FooterItem">

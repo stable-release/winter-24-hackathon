@@ -1,5 +1,6 @@
 "use client";
 
+import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -11,6 +12,8 @@ export default function Home() {
         setHeight(newH);
     }, []);
 
+    const perm = getCookie("permissions");
+
     return (
         <div className="flex flex-col h-full w-full">
             <nav className="h-[146px] w-full flex items-center bg-[#F9F9F9]">
@@ -20,14 +23,21 @@ export default function Home() {
                     <div className="NavLink">Blog</div>
                 </div>
                 <div className="ml-auto mr-8 flex">
-                    <div className="flex gap-8">
-                        <Link href={"/login"}>
-                            <div>Login</div>
-                        </Link>
-                        <div>
-                            <Link href={"/signup"}>
-                                <div>Sign Up</div>
+                    <div className="flex gap-8 items-center">
+                        {perm > 0 ? (
+                            <Link href={"/dashboard"} className="LandingAccount drop-shadow-lg h-[42px] flex items-center">Account</Link>
+                        ) : (
+                            ""
+                        )}
+                        <div className="flex gap-8 w-[329px] h-[42px] LandingActions items-center drop-shadow-lg">
+                            <Link href={"/login"} className="flex items-center justify-center ml-[30px]">
+                                <div className="LandingLogin">Login</div>
                             </Link>
+                            <div className="flex items-center justify-center h-full w-[175px] ml-auto LandingSignup drop-shadow-lg">
+                                <Link href={"/signup"} className="flex items-center justify-center">
+                                    <div>Sign Up</div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

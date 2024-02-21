@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { strategies } from "./strategies";
-import { formatAsDate } from "@/app/_api/date-time";
-import EntryForm from "@/app/_components/Forms/EntryForm";
+import { asDateString, formatAsDate } from "@/app/_api/date-time";
 import EntryComponent from "@/app/_components/Entry/EntryComponent";
+import { retrieveEntry } from "@/app/_api/entries.api";
 
 export default function Page() {
     // Auth with cookies 🍪
@@ -44,6 +44,40 @@ export default function Page() {
             getUserDetails();
         }
     }, [email]);
+
+    const [entryAvailable, isEntryAvailable] = useState(2);
+    const [submitEntry, isSubmitEntry] = useState(false);
+
+    const onDone = () => {
+        isSubmitEntry(true);
+    };
+
+    useEffect(() => {
+        async function checkEntry() {
+            // await res entry for today's date
+            // if date exists then switch entry available to false
+            // otherwise, true
+            try {
+                const userID = await returnUserID(getCookie("username"));
+                const response = await retrieveEntry(
+                    userID.user_id,
+                    asDateString(calendarValue)
+                );
+
+                if (response.entry_date) {
+                    isEntryAvailable(0);
+                } else {
+                    isEntryAvailable(1);
+                }
+            } catch (e) {
+                isEntryAvailable(1);
+            }
+        }
+
+        if (entryAvailable) {
+            checkEntry();
+        }
+    }, [submitEntry]);
 
     const dash = (
         <div className="flex">
@@ -107,7 +141,7 @@ export default function Page() {
                 <div className="h-1/2 my-10">
                     <Calendar onChange={onChange} value={calendarValue} />
                 </div>
-                <div>Hi</div>
+                <div>{}</div>
             </div>
         </div>
     );
@@ -115,14 +149,19 @@ export default function Page() {
     if (getCookie("permissions") == 0) {
         router.push("/");
     } else {
-        if (userDetails) {
+        if (entryAvailable == 1) {
             return (
                 <EntryComponent
                     userDetails={userDetails}
                     calendarValue={calendarValue}
                     email={email}
+                    onDone={onDone}
                 />
             );
+        } else if (entryAvailable == 2) {
+            return <div className="Title">Loading...</div>;
+        } else {
+            return dash;
         }
     }
 }

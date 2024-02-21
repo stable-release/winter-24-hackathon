@@ -11,11 +11,12 @@ export default function EntryForm({
     error,
     today,
 }) {
+    const todayDate = asDateString(today);
     return (
         <form onSubmit={onSubmit} className="flex flex-col gap-[40px] p-10">
             <div className="flex flex-col gap-3">
                 <div className="FormLabel">
-                    Entry Date: {`${today}`}
+                    Entry Date: {`${todayDate}`}
                 </div>
             </div>
             <div className="flex gap-[50px]">
@@ -98,82 +99,6 @@ export default function EntryForm({
                     handleSlider={handleSlider[0]}
                 />
             </section>
-            {/* <div className="flex gap-[50px]">
-                <div className="w-1/4">
-                    <div className="flex flex-col gap-3">
-                        <label htmlFor="height" className="FormLabel">
-                            Activity Level
-                        </label>
-                        <input
-                            id="activity_level"
-                            name="activity_level"
-                            type="activity_level"
-                            autoComplete="activity_level"
-                            required={true}
-                            placeholder="activity_level"
-                            onChange={handleChange}
-                            value={formData.activity_level}
-                            className="FormInput"
-                        />
-                    </div>
-                </div>
-                <div className="w-1/4">
-                    <div className="flex flex-col gap-3">
-                        <label htmlFor="stress_level" className="FormLabel">
-                            Stress Level
-                        </label>
-                        <input
-                            id="stress_level"
-                            name="stress_level"
-                            type="number"
-                            autoComplete="stress_level"
-                            required={true}
-                            placeholder="stress_level"
-                            onChange={handleChange}
-                            value={formData.stress_level}
-                            className="FormInput"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div className="flex gap-[50px]">
-                <div className="w-1/4">
-                    <div className="flex flex-col gap-3">
-                        <label htmlFor="sleep_duration" className="FormLabel">
-                            Sleep Duration
-                        </label>
-                        <input
-                            id="sleep_duration"
-                            name="sleep_duration"
-                            type="sleep_duration"
-                            autoComplete="sleep_duration"
-                            required={true}
-                            placeholder="sleep_duration"
-                            onChange={handleChange}
-                            value={formData.sleep_duration}
-                            className="FormInput"
-                        />
-                    </div>
-                </div>
-                <div className="w-1/4">
-                    <div className="flex flex-col gap-3">
-                        <label htmlFor="sleep_quality" className="FormLabel">
-                            Sleep Quality
-                        </label>
-                        <input
-                            id="sleep_quality"
-                            name="sleep_quality"
-                            type="sleep_quality"
-                            autoComplete="sleep_quality"
-                            required={true}
-                            placeholder="sleep_quality"
-                            onChange={handleChange}
-                            value={formData.sleep_quality}
-                            className="FormInput"
-                        />
-                    </div>
-                </div>
-            </div> */}
             <div>
                 <div className="flex flex-col gap-3">
                     <label htmlFor="notes" className="FormLabel">
