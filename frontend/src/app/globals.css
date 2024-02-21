@@ -183,7 +183,7 @@ hr {
 
 .add-user {
   display: grid;
-  color: white;
+  color: #ffffff;
   background-color: #7E8BB1;
   height: 40px;
   width: 40px;
@@ -191,4 +191,11 @@ hr {
   align-items: center;
   justify-content: center;
   font-size: 30px;
+}
+
+.DailyModal {
+  border: 0px #F9F9F9;
+  background-color: #F9F9F9;
+  width: 80%;
+  border-radius: 20px;
 }
