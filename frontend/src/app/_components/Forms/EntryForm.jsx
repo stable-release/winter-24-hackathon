@@ -11,11 +11,12 @@ export default function EntryForm({
     error,
     today,
 }) {
+    const todayDate = asDateString(today);
     return (
         <form onSubmit={onSubmit} className="flex flex-col gap-[40px] p-10">
             <div className="flex flex-col gap-3">
                 <div className="FormLabel">
-                    Entry Date: {`${today}`}
+                    Entry Date: {`${todayDate}`}
                 </div>
             </div>
             <div className="flex gap-[50px]">
