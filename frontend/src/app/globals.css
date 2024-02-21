@@ -163,6 +163,36 @@ body {
   line-height: 30px;
 }
 
+.table-head1 {
+  min-width: 350px;
+  height: 25px;
+  text-align: left;
+}
+
+.table-head2 {
+  min-width: 100px;
+  height: 25px;
+  text-align: left;
+}
+
+hr {
+  color: #e2e1de;
+  margin-bottom: 5px;
+  width: 800px;
+}
+
+.add-user {
+  display: grid;
+  color: #ffffff;
+  background-color: #7E8BB1;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
 .DailyModal {
   border: 0px #F9F9F9;
   background-color: #F9F9F9;

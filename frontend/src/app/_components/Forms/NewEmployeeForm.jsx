@@ -2,7 +2,7 @@ import ErrorAlert from "../ErrorAlert/ErrorAlert";
 
 export default function NewEmployeeForm({ formData, handleSubmit, handleChange, handleCancel, error }) {
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-[20px] max-w-[450px]">
             <div className="flex gap-[20px]">
                 <input 
                     name="first_name"
@@ -33,8 +33,8 @@ export default function NewEmployeeForm({ formData, handleSubmit, handleChange, 
             />
             <ErrorAlert error={error} />
             <div className="flex gap-[20px]">
-                <button type="submit" className="FormSubmit flex-2">Add Employee</button>
-                <button type="button" className="bg-red-700 rounded-3xl p-3 font-bold text-2xl text-white leading-7 flex-1" onClick={handleCancel}>Cancel</button>
+                <button type="submit" className="new-user-btn bg-secondary rounded-3xl font-semibold text-[30px] text-[white] w-[300px] p-1">Add User</button>
+                <button type="button" className="new user-btn bg-[crimson] rounded-3xl text-[30px] text-[white] w-[250px] p-1" onClick={handleCancel}>Cancel</button>
             </div>
         </form>
     );
