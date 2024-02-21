@@ -1,7 +1,7 @@
 import EmployeeRow from "./EmployeeRow";
 import Link from "next/link";
 import Image from "next/image";
-import profilePic from "../../../../img/pexels-karolina-grabowska-4467687.jpg"
+// import profilePic from "../../../../img/pexels-karolina-grabowska-4467687.jpg"
 
 export default function EmployeesTable({ employees }) {
     return (

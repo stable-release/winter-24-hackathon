@@ -2,7 +2,7 @@ import { useState } from "react";
 import ErrorAlert from "../ErrorAlert/ErrorAlert";
 import { deleteEmployee } from "@/app/_api/api";
 import Image from "next/image";
-import profilePic from "../../../../img/pexels-karolina-grabowska-4467687.jpg";
+// import profilePic from "../../../../img/pexels-karolina-grabowska-4467687.jpg";
 
 export default function EmployeeRow({ employee }) {
     const [error, setError] = useState(null)
