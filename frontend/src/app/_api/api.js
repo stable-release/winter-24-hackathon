@@ -1,6 +1,8 @@
 require("dotenv").config();
 
-const { REACT_APP_API_URL = "https://winter-24-hackathon-production.up.railway.app" } = process.env;
+const {
+    REACT_APP_API_URL = "https://winter-24-hackathon-production.up.railway.app",
+} = process.env;
 
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
@@ -11,37 +13,36 @@ async function fetchJson(url, options, onCancel) {
 
         if (response.status === 204) {
             return null;
-        };
+        }
 
         const payload = await response.json();
 
         if (payload.error) {
             return Promise.reject({ message: payload.error });
-        };
+        }
 
         return payload.data;
-
     } catch (error) {
         if (error.name !== "AbortError") {
             console.error(error.stack);
             throw error;
-        };
+        }
 
         return Promise.resolve(onCancel);
-    };
-};
+    }
+}
 
 // Username is same as Email
 export async function returnUserID(username) {
     const url = new URL(`${REACT_APP_API_URL}/auth/ID/${username}`);
-    const options = { method: "GET"};
+    const options = { method: "GET" };
     return await fetchJson(url, options);
 }
 
 // Username is same as Email
 export async function returnUserDetails(username) {
     const url = new URL(`${REACT_APP_API_URL}/auth/details/${username}`);
-    const options = { method: "GET"};
+    const options = { method: "GET" };
     return await fetchJson(url, options);
 }
 
@@ -52,12 +53,12 @@ export async function listEmployees(signal) {
 
 export async function deleteEmployee(user_id, signal) {
     const url = new URL(`${REACT_APP_API_URL}/employees/${user_id}`);
-    const options = { method: "DELETE", signal};
+    const options = { method: "DELETE", signal };
     return await fetchJson(url, options);
 }
 
 export async function createUser(user, signal) {
-    const url = new URL(`${REACT_APP_API_URL}/employees/new`)
+    const url = new URL(`${REACT_APP_API_URL}/employees/new`);
     const options = {
         method: "POST",
         headers,
@@ -65,4 +66,4 @@ export async function createUser(user, signal) {
         signal,
     };
     return await fetchJson(url, options, {});
-};
+}

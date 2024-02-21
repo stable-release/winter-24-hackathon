@@ -1,6 +1,6 @@
 "use client";
 
-import { returnUserDetails } from "@/app/_api/api";
+import { returnUserDetails, returnUserID } from "@/app/_api/api";
 import { recommendStrategy } from "@/app/_api/recommender.api";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { strategies } from "./strategies";
+import { formatAsDate } from "@/app/_api/date-time";
+import EntryForm from "@/app/_components/Forms/EntryForm";
+import EntryComponent from "@/app/_components/Entry/EntryComponent";
 
 export default function Page() {
     // Auth with cookies 🍪
@@ -41,8 +44,6 @@ export default function Page() {
             getUserDetails();
         }
     }, [email]);
-
-    console.log(calendarValue);
 
     const dash = (
         <div className="flex">
@@ -83,12 +84,20 @@ export default function Page() {
                     <div className="w-[508px] h-[230] flex flex-col justify-center items-center">
                         <div className="w-full rounded-[15px] border-black border-[1px] flex justify-center mb-[18px]">
                             <div className="w-[402px] h-[68px] flex items-center text-left Recommendation gap-4">
-                                <img src="/svg/sleepIcon.svg" className="size-8" />Get Better Sleep
+                                <img
+                                    src="/svg/sleepIcon.svg"
+                                    className="size-8"
+                                />
+                                Get Better Sleep
                             </div>
                         </div>
                         <div className="w-full rounded-[15px] border-black border-[1px] flex justify-center">
                             <div className="w-[402px] h-[68px] flex items-center text-left Recommendation gap-4">
-                            <img src="/svg/stressIcon.svg" className="size-8" />Reduce My Stress Levels
+                                <img
+                                    src="/svg/stressIcon.svg"
+                                    className="size-8"
+                                />
+                                Reduce My Stress Levels
                             </div>
                         </div>
                     </div>
@@ -107,7 +116,13 @@ export default function Page() {
         router.push("/");
     } else {
         if (userDetails) {
-            return dash;
+            return (
+                <EntryComponent
+                    userDetails={userDetails}
+                    calendarValue={calendarValue}
+                    email={email}
+                />
+            );
         }
     }
 }

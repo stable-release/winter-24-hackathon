@@ -162,3 +162,10 @@ body {
   color: #FFFFFF;
   line-height: 30px;
 }
+
+.DailyModal {
+  border: 0px #F9F9F9;
+  background-color: #F9F9F9;
+  width: 80%;
+  border-radius: 20px;
+}
