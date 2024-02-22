@@ -34,7 +34,8 @@ export default function EntryComponent({
     };
 
     const handleStressLevel = (e) => {
-        setStressLevel(e.target.value);
+        e.preventDefault();
+        setStressLevel(e.currentTarget.value);
     };
 
     const handleSleepQuality = (e) => {
@@ -129,7 +130,7 @@ export default function EntryComponent({
                 </div>
                 <div
                     className=" w-full overflow-auto"
-                    style={{ height: `${h}px` }}
+                    style={{ height: `${h - 100}px` }}
                 >
                     <div className="DailyModal ml-[40px]">
                         <EntryForm
