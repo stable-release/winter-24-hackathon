@@ -12,6 +12,7 @@ import { strategies } from "./strategies";
 import { asDateString, formatAsDate } from "@/app/_api/date-time";
 import EntryComponent from "@/app/_components/Entry/EntryComponent";
 import { retrieveEntry } from "@/app/_api/entries.api";
+import CalendarEntry from "@/app/_components/Entry/CalendarEntry";
 
 export default function Page() {
     // Auth with cookies 🍪
@@ -45,12 +46,13 @@ export default function Page() {
         }
     }, [email]);
 
+    /**
+     * 0 = Dash
+     * 1 = Entry
+     * 2 = Loading (Default)
+     */
     const [entryAvailable, isEntryAvailable] = useState(2);
-    const [submitEntry, isSubmitEntry] = useState(false);
-
-    const onDone = () => {
-        isSubmitEntry(true);
-    };
+    const [submitEntry, setSubmitEntry] = useState(false);
 
     useEffect(() => {
         async function checkEntry() {
@@ -141,7 +143,12 @@ export default function Page() {
                 <div className="h-1/2 my-10">
                     <Calendar onChange={onChange} value={calendarValue} />
                 </div>
-                <div>{}</div>
+                <div>
+                    <CalendarEntry
+                        value={calendarValue}
+                        entryAvailable={entryAvailable}
+                    />
+                </div>
             </div>
         </div>
     );
@@ -155,7 +162,7 @@ export default function Page() {
                     userDetails={userDetails}
                     calendarValue={calendarValue}
                     email={email}
-                    onDone={onDone}
+                    setSubmitEntry={setSubmitEntry}
                 />
             );
         } else if (entryAvailable == 2) {

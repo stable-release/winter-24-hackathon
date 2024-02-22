@@ -6,7 +6,12 @@ import { createEntry } from "@/app/_api/entries.api";
 import { asDateString } from "@/app/_api/date-time";
 import { useRouter } from "next/navigation";
 
-export default function EntryComponent({ userDetails, calendarValue, email, onDone }) {
+export default function EntryComponent({
+    userDetails,
+    calendarValue,
+    email,
+    setSubmitEntry,
+}) {
     const router = useRouter();
     const [submit, setSubmit] = useState(false);
     const [error, setError] = useState("");
@@ -38,7 +43,7 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
 
     const handleNotes = (e) => {
         setNotes(e.target.value);
-    }
+    };
 
     const [h, setHeight] = useState();
     useEffect(() => {
@@ -64,17 +69,17 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
         }
     }, [calendarValue, userDetails]);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        setSubmit(true);
-    };
-
     const handleChange = ({ target }) => {
         const value = target.value;
         setFormData({
             ...formData,
             [target.name]: value,
         });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmit(true);
     };
 
     /**
@@ -99,8 +104,8 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
                     notes
                 );
                 if (res.entry_date) {
-                    console.log("done")
-                    router.refresh();
+                    console.log("done");
+                    setSubmitEntry(true);
                 } else {
                     setError("Validation Error");
                 }
@@ -109,10 +114,12 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
                 setSubmit(false);
             }
         }
+
         if (submit) {
             submitForm();
         }
     }, [submit]);
+
     return (
         <div className="w-full flex">
             <div className="w-full flex flex-col">
@@ -128,19 +135,19 @@ export default function EntryComponent({ userDetails, calendarValue, email, onDo
                         <EntryForm
                             today={calendarValue}
                             formData={formData}
-                            onSubmit={onSubmit}
+                            onSubmit={handleSubmit}
                             handleChange={handleChange}
                             sliderValues={[
                                 activityLevel,
                                 sleepQuality,
                                 stressLevel,
-                                notes
+                                notes,
                             ]}
                             handleSlider={[
                                 handleActivityLevel,
                                 handleSleepQuality,
                                 handleStressLevel,
-                                handleNotes
+                                handleNotes,
                             ]}
                             error={error}
                         />
