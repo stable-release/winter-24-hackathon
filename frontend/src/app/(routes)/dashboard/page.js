@@ -46,13 +46,13 @@ export default function Page() {
         }
     }, [email]);
 
+    /**
+     * 0 = Dash
+     * 1 = Entry
+     * 2 = Loading (Default)
+     */
     const [entryAvailable, isEntryAvailable] = useState(2);
-    const [submitEntry, isSubmitEntry] = useState(false);
-
-    const onDone = (e) => {
-        e.preventDefault();
-        isSubmitEntry(true);
-    };
+    const [submitEntry, setSubmitEntry] = useState(false);
 
     useEffect(() => {
         async function checkEntry() {
@@ -144,7 +144,10 @@ export default function Page() {
                     <Calendar onChange={onChange} value={calendarValue} />
                 </div>
                 <div>
-                    <CalendarEntry value={calendarValue} entryAvailable={entryAvailable}/>
+                    <CalendarEntry
+                        value={calendarValue}
+                        entryAvailable={entryAvailable}
+                    />
                 </div>
             </div>
         </div>
@@ -159,7 +162,7 @@ export default function Page() {
                     userDetails={userDetails}
                     calendarValue={calendarValue}
                     email={email}
-                    onDone={onDone}
+                    setSubmitEntry={setSubmitEntry}
                 />
             );
         } else if (entryAvailable == 2) {

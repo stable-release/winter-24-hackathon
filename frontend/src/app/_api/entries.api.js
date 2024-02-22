@@ -48,9 +48,6 @@ export async function createEntry(
 
         let payload = await response.json();
 
-        console.log(payload.data);
-        console.log(payload.error);
-
         if (payload.error) {
             return Promise.reject({ message: payload.error });
         }
@@ -81,6 +78,8 @@ export async function retrieveEntry(user_id, entry_date) {
         );
 
         let payload = await response.json();
+
+        
         
         if (payload.error) {
             return Promise.reject({ message: payload.error });
