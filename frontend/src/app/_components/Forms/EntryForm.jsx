@@ -12,13 +12,116 @@ export default function EntryForm({
     today,
 }) {
     const todayDate = asDateString(today);
+    const selected = "size-[96px] rounded-[48px] border-[0px] bg-[#A6BEE0]";
+    const unselected = "size-[96px] rounded-[48px] border-[0px] bg-[#FFFFFF]";
     return (
         <form onSubmit={onSubmit} className="flex flex-col gap-[40px] p-10">
             <div className="flex flex-col gap-3">
-                <div className="FormLabel">
-                    Entry Date: {`${todayDate}`}
-                </div>
+                <div className="FormLabel">Entry Date: {`${todayDate}`}</div>
             </div>
+            <section className="flex flex-col items-center mb-[48px]">
+                <div className="FormLabel mb-[60px]">
+                    How are you feeling today?
+                </div>
+                <div className="flex gap-5 items-center">
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 1 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="1"
+                        >
+                            <img
+                                src={"svg/stressIcons/Happy.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Happy</div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 2 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="2"
+                        >
+                            <img
+                                src={"svg/stressIcons/VeryHappy.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Very Happy</div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 3 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="3"
+                        >
+                            <img
+                                src={"svg/stressIcons/Sad.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Sad</div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 4 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="4"
+                        >
+                            <img
+                                src={"svg/stressIcons/VerySad.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Very Sad</div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 5 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="5"
+                        >
+                            <img
+                                src={"svg/stressIcons/Okay.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Okay</div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <button
+                            className={`
+                                ${sliderValues[2] == 6 ? selected : unselected}
+                                flex items-center justify-center
+                            `}
+                            onClick={handleSlider[2]}
+                            value="6"
+                        >
+                            <img
+                                src={"svg/stressIcons/Anxious.svg"}
+                                className="size-[66px]"
+                            />
+                        </button>
+                        <div className="StressLabel">Anxious</div>
+                    </div>
+                </div>
+            </section>
             <div className="flex gap-[50px]">
                 <div className="w-1/4">
                     <div className="flex flex-col gap-3">
@@ -57,20 +160,6 @@ export default function EntryForm({
                     </div>
                 </div>
             </div>
-            <section>
-                <RangeSlider
-                    title={"Stress Level"}
-                    name={"stressLevel"}
-                    step={1}
-                    min={1}
-                    max={5}
-                    defaultValue={0}
-                    value={sliderValues[2]}
-                    minLabel={"Low"}
-                    maxLabel={"High"}
-                    handleSlider={handleSlider[2]}
-                />
-            </section>
             <section>
                 <RangeSlider
                     title={"Sleep Quality"}

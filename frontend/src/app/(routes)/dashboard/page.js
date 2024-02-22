@@ -139,15 +139,17 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col ml-auto">
-                <div className="h-1/2 my-10">
-                    <Calendar onChange={onChange} value={calendarValue} />
-                </div>
-                <div>
-                    <CalendarEntry
-                        value={calendarValue}
-                        entryAvailable={entryAvailable}
-                    />
+            <div className="flex flex-col ml-auto py-[5px] items-center justify-center h-full">
+                <div className="bg-[#F9F9F9] px-[25px] py-[25px] flex flex-col rounded-[32px]">
+                    <div className="h-1/2 mb-[30px]">
+                        <Calendar onChange={onChange} value={calendarValue} className="rounded-[15px]" />
+                    </div>
+                    <div>
+                        <CalendarEntry
+                            value={calendarValue}
+                            entryAvailable={entryAvailable}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

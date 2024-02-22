@@ -229,3 +229,14 @@ hr {
   font-size: 16px;
   font-weight: 700;
 }
+
+.StressLabel {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 29px;
+    color: #000000;
+}
+
+.StressValue {
+    font-weight: 500;
+}
